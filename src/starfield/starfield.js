@@ -1,6 +1,5 @@
 const fs = require('fs')
-const path = require('path')
-const {BufferStructure, BufferOperations} = require('lib-bethesda-strings/src/buffer')
+const {BufferOperations} = require('lib-bethesda-strings/src/buffer')
 
 /** @typedef {{ id: number, address: number, relativeOffset: number, absoluteOffset: number, nullPoint: number, length: number, stringArray: Uint8Array }} StringDataObject */
 /** @typedef {(stringArray: Uint8Array, stringDataObject:StringDataObject) => boolean} Filter */
@@ -20,10 +19,9 @@ const TEXT_DECODER = new TextDecoder()
 
 /**
  * @param {Uint8Array} stringArray
- * @param {STRINGS_TYPE} type
  * @return {string}
  */
-function uint8ArrayToString(stringArray, type) {
+function uint8ArrayToString(stringArray) {
     return TEXT_DECODER.decode(stringArray.slice(0, stringArray.length - 1))
 }
 
@@ -61,7 +59,7 @@ function modifyBufferStructure(data, filter, modification, type) {
      * @param {StringDataObject} stringDataObject
      */
     function modificationFx(stringArray, stringDataObject) {
-        const str = uint8ArrayToString(stringArray, type)
+        const str = uint8ArrayToString(stringArray)
         const modifiedStr = modification(str)
 
         const strIdAddress = `${stringDataObject.id}:${stringDataObject.address}`
