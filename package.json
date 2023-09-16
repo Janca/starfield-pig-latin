@@ -1,0 +1,19 @@
+{
+  "name": "starfield-pig-latin",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "src",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "lib-bethesda-strings": "github:Janca/lib-bethesda-strings"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.4",
+    "jest": "^29.7.0"
+  }
+}
